@@ -184,14 +184,36 @@ public class HotelRoomBooking {
     }
     
     public double hitungTotalBiaya() {
-        BiayaPemesanan biaya = new BiayaPemesanan(
-                hargaPerMalam,
-                jumlahMalam,
-                jumlahTamu,
-                kodeVoucher,
-                statusAktif
-        );
-        return biaya.hitung();
+        double total = hitungBiayaDasar();
+        total += hitungBiayaTambahan();
+        total -= hitungDiskonVoucher();
+        total -= hitungPotonganStatusNonAktif();
+        return total;
+    }
+    
+    private double hitungBiayaDasar() {
+        return hargaPerMalam * jumlahMalam;
+    }
+    
+    private double hitungBiayaTambahan() {
+        if (jumlahTamu > 2) {
+            return (jumlahTamu - 2) * 100000;
+        }
+        return 0;
+    }
+    
+    private double hitungDiskonVoucher() {
+        if (kodeVoucher != null && kodeVoucher.length() > 3) {
+            return 50000;
+        }
+        return 0;
+    }
+    
+    private double hitungPotonganStatusNonAktif() {
+        if (!statusAktif) {
+            return hargaPerMalam * jumlahMalam; // misalnya seluruh biaya hilang
+        }
+        return 0;
     }
 
     public String klasifikasiTamu() {
