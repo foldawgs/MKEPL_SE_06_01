@@ -1,5 +1,6 @@
 import java.util.Date;
 
+
 public class HotelRoomBooking {
 
     private String namaPemesan;
@@ -128,7 +129,7 @@ public class HotelRoomBooking {
     private void printDetail(String label, Object value) {
         System.out.printf("%-15s: %s%n", label, value);
     }
-    
+
     public void cetakDetailPemesanan() {
         System.out.println("===== DETAIL PEMESANAN KAMAR =====");
         printDetail("Nama Pemesan", namaPemesan);
@@ -152,19 +153,45 @@ public class HotelRoomBooking {
 
     public void redeemVoucher(String kode) {
     }
-
+    public class BiayaPemesanan {
+        private double hargaPerMalam;
+        private int jumlahMalam;
+        private int jumlahTamu;
+        private String kodeVoucher;
+        private boolean statusAktif;
+    
+        public BiayaPemesanan(double hargaPerMalam, int jumlahMalam, int jumlahTamu, String kodeVoucher, boolean statusAktif) {
+            this.hargaPerMalam = hargaPerMalam;
+            this.jumlahMalam = jumlahMalam;
+            this.jumlahTamu = jumlahTamu;
+            this.kodeVoucher = kodeVoucher;
+            this.statusAktif = statusAktif;
+        }
+    
+        public double hitung() {
+            double total = hargaPerMalam * jumlahMalam;
+            if (jumlahTamu > 2) {
+                total += (jumlahTamu - 2) * 100000;
+            }
+            if (kodeVoucher != null && kodeVoucher.length() > 3) {
+                total -= 50000;
+            }
+            if (!statusAktif) {
+                total = 0;
+            }
+            return total;
+        }
+    }
+    
     public double hitungTotalBiaya() {
-        double total = hargaPerMalam * jumlahMalam;
-        if (jumlahTamu > 2) {
-            total += (jumlahTamu - 2) * 100000;
-        }
-        if (kodeVoucher != null && kodeVoucher.length() > 3) {
-            total -= 50000;
-        }
-        if (!statusAktif) {
-            total = 0;
-        }
-        return total;
+        BiayaPemesanan biaya = new BiayaPemesanan(
+                hargaPerMalam,
+                jumlahMalam,
+                jumlahTamu,
+                kodeVoucher,
+                statusAktif
+        );
+        return biaya.hitung();
     }
 
     public String klasifikasiTamu() {
