@@ -125,24 +125,28 @@ public class HotelRoomBooking {
         }
     }
 
+    private void printDetail(String label, Object value) {
+        System.out.printf("%-15s: %s%n", label, value);
+    }
+    
     public void cetakDetailPemesanan() {
         System.out.println("===== DETAIL PEMESANAN KAMAR =====");
-        System.out.println("Nama Pemesan : " + namaPemesan);
-        System.out.println("Jenis Kelamin: " + jenisKelamin);
-        System.out.println("No. KTP      : " + nomorKTP);
-        System.out.println("Telepon      : " + nomorTelepon);
-        System.out.println("Email        : " + email);
-        System.out.println("Jenis Kamar  : " + jenisKamar);
-        System.out.println("Jumlah Tamu  : " + jumlahTamu);
-        System.out.println("Jumlah Malam : " + jumlahMalam);
-        System.out.println("Harga/Malam  : " + hargaPerMalam);
-        System.out.println("Check-in     : " + tanggalCheckin);
-        System.out.println("Check-out    : " + tanggalCheckout);
-        System.out.println("Status Aktif : " + statusAktif);
-        System.out.println("Voucher      : " + kodeVoucher);
-        System.out.println("Sudah Dibayar: " + sudahDibayar);
-        System.out.println("Total Biaya  : Rp " + hitungTotalBiaya());
-        System.out.println("Tipe Tamu    : " + klasifikasiTamu());
+        printDetail("Nama Pemesan", namaPemesan);
+        printDetail("Jenis Kelamin", jenisKelamin);
+        printDetail("No. KTP", nomorKTP);
+        printDetail("Telepon", nomorTelepon);
+        printDetail("Email", email);
+        printDetail("Jenis Kamar", jenisKamar);
+        printDetail("Jumlah Tamu", jumlahTamu);
+        printDetail("Jumlah Malam", jumlahMalam);
+        printDetail("Harga/Malam", hargaPerMalam);
+        printDetail("Check-in", tanggalCheckin);
+        printDetail("Check-out", tanggalCheckout);
+        printDetail("Status Aktif", statusAktif);
+        printDetail("Voucher", kodeVoucher);
+        printDetail("Sudah Dibayar", sudahDibayar);
+        printDetail("Total Biaya", "Rp " + hitungTotalBiaya());
+        printDetail("Tipe Tamu", klasifikasiTamu());
         System.out.println("===================================");
     }
 
