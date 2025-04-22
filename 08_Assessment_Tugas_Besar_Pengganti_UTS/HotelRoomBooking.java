@@ -149,9 +149,6 @@ public class HotelRoomBooking {
     public void redeemVoucher(String kode) {
     }
 
-    public void kirimEmailKonfirmasi() {
-    }
-
     public double hitungTotalBiaya() {
         double total = hargaPerMalam * jumlahMalam;
         if (jumlahTamu > 2) {
