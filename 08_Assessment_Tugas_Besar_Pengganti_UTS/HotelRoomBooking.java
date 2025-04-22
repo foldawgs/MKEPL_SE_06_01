@@ -1,6 +1,5 @@
 import java.util.Date;
 
-
 public class HotelRoomBooking {
 
     private String namaPemesan;
@@ -153,67 +152,10 @@ public class HotelRoomBooking {
 
     public void redeemVoucher(String kode) {
     }
-    public class BiayaPemesanan {
-        private double hargaPerMalam;
-        private int jumlahMalam;
-        private int jumlahTamu;
-        private String kodeVoucher;
-        private boolean statusAktif;
-    
-        public BiayaPemesanan(double hargaPerMalam, int jumlahMalam, int jumlahTamu, String kodeVoucher, boolean statusAktif) {
-            this.hargaPerMalam = hargaPerMalam;
-            this.jumlahMalam = jumlahMalam;
-            this.jumlahTamu = jumlahTamu;
-            this.kodeVoucher = kodeVoucher;
-            this.statusAktif = statusAktif;
-        }
-    
-        public double hitung() {
-            double total = hargaPerMalam * jumlahMalam;
-            if (jumlahTamu > 2) {
-                total += (jumlahTamu - 2) * 100000;
-            }
-            if (kodeVoucher != null && kodeVoucher.length() > 3) {
-                total -= 50000;
-            }
-            if (!statusAktif) {
-                total = 0;
-            }
-            return total;
-        }
-    }
-    
+
     public double hitungTotalBiaya() {
-        double total = hitungBiayaDasar();
-        total += hitungBiayaTambahan();
-        total -= hitungDiskonVoucher();
-        total -= hitungPotonganStatusNonAktif();
-        return total;
-    }
-    
-    private double hitungBiayaDasar() {
-        return hargaPerMalam * jumlahMalam;
-    }
-    
-    private double hitungBiayaTambahan() {
-        if (jumlahTamu > 2) {
-            return (jumlahTamu - 2) * 100000;
-        }
-        return 0;
-    }
-    
-    private double hitungDiskonVoucher() {
-        if (kodeVoucher != null && kodeVoucher.length() > 3) {
-            return 50000;
-        }
-        return 0;
-    }
-    
-    private double hitungPotonganStatusNonAktif() {
-        if (!statusAktif) {
-            return hargaPerMalam * jumlahMalam; // misalnya seluruh biaya hilang
-        }
-        return 0;
+        BiayaPemesanan biaya = new BiayaPemesanan(hargaPerMalam, jumlahMalam, jumlahTamu, kodeVoucher, statusAktif);
+        return biaya.hitung();
     }
 
     public String klasifikasiTamu() {
@@ -279,5 +221,35 @@ public class HotelRoomBooking {
 
     public void setSudahDibayar(boolean sudahDibayar) {
         this.sudahDibayar = sudahDibayar;
+    }
+}
+
+class BiayaPemesanan {
+    private double hargaPerMalam;
+    private int jumlahMalam;
+    private int jumlahTamu;
+    private String kodeVoucher;
+    private boolean statusAktif;
+
+    public BiayaPemesanan(double hargaPerMalam, int jumlahMalam, int jumlahTamu, String kodeVoucher, boolean statusAktif) {
+        this.hargaPerMalam = hargaPerMalam;
+        this.jumlahMalam = jumlahMalam;
+        this.jumlahTamu = jumlahTamu;
+        this.kodeVoucher = kodeVoucher;
+        this.statusAktif = statusAktif;
+    }
+
+    public double hitung() {
+        double total = hargaPerMalam * jumlahMalam;
+        if (jumlahTamu > 2) {
+            total += (jumlahTamu - 2) * 100000;
+        }
+        if (kodeVoucher != null && kodeVoucher.length() > 3) {
+            total -= 50000;
+        }
+        if (!statusAktif) {
+            total = 0;
+        }
+        return total;
     }
 }
