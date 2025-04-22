@@ -17,25 +17,112 @@ public class HotelRoomBooking {
     private Date tanggalCheckout;
     private boolean statusAktif;
 
-    public HotelRoomBooking(String namaPemesan, String nomorKTP, String nomorTelepon, String email, String jenisKelamin,
-            String jenisKamar, int jumlahTamu, int jumlahMalam, double hargaPerMalam,
-            Date tanggalCheckin, Date tanggalCheckout, boolean statusAktif,
-            String kodeVoucher, boolean sudahDibayar) {
+    private HotelRoomBooking(Builder builder) {
+        this.namaPemesan = builder.namaPemesan;
+        this.nomorKTP = builder.nomorKTP;
+        this.nomorTelepon = builder.nomorTelepon;
+        this.email = builder.email;
+        this.jenisKelamin = builder.jenisKelamin;
+        this.jenisKamar = builder.jenisKamar;
+        this.jumlahTamu = builder.jumlahTamu;
+        this.jumlahMalam = builder.jumlahMalam;
+        this.hargaPerMalam = builder.hargaPerMalam;
+        this.kodeVoucher = builder.kodeVoucher;
+        this.sudahDibayar = builder.sudahDibayar;
+        this.tanggalCheckin = builder.tanggalCheckin;
+        this.tanggalCheckout = builder.tanggalCheckout;
+        this.statusAktif = builder.statusAktif;
+    }
 
-        this.namaPemesan = namaPemesan;
-        this.nomorKTP = nomorKTP;
-        this.nomorTelepon = nomorTelepon;
-        this.email = email;
-        this.jenisKelamin = jenisKelamin;
-        this.jenisKamar = jenisKamar;
-        this.jumlahTamu = jumlahTamu;
-        this.jumlahMalam = jumlahMalam;
-        this.hargaPerMalam = hargaPerMalam;
-        this.tanggalCheckin = tanggalCheckin;
-        this.tanggalCheckout = tanggalCheckout;
-        this.statusAktif = statusAktif;
-        this.kodeVoucher = kodeVoucher;
-        this.sudahDibayar = sudahDibayar;
+    public static class Builder {
+        private String namaPemesan;
+        private String nomorKTP;
+        private String nomorTelepon;
+        private String email;
+        private String jenisKelamin;
+        private String jenisKamar;
+        private int jumlahTamu;
+        private int jumlahMalam;
+        private double hargaPerMalam;
+        private String kodeVoucher;
+        private boolean sudahDibayar;
+        private Date tanggalCheckin;
+        private Date tanggalCheckout;
+        private boolean statusAktif;
+
+        public Builder setNamaPemesan(String namaPemesan) {
+            this.namaPemesan = namaPemesan;
+            return this;
+        }
+
+        public Builder setNomorKTP(String nomorKTP) {
+            this.nomorKTP = nomorKTP;
+            return this;
+        }
+
+        public Builder setNomorTelepon(String nomorTelepon) {
+            this.nomorTelepon = nomorTelepon;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setJenisKelamin(String jenisKelamin) {
+            this.jenisKelamin = jenisKelamin;
+            return this;
+        }
+
+        public Builder setJenisKamar(String jenisKamar) {
+            this.jenisKamar = jenisKamar;
+            return this;
+        }
+
+        public Builder setJumlahTamu(int jumlahTamu) {
+            this.jumlahTamu = jumlahTamu;
+            return this;
+        }
+
+        public Builder setJumlahMalam(int jumlahMalam) {
+            this.jumlahMalam = jumlahMalam;
+            return this;
+        }
+
+        public Builder setHargaPerMalam(double hargaPerMalam) {
+            this.hargaPerMalam = hargaPerMalam;
+            return this;
+        }
+
+        public Builder setKodeVoucher(String kodeVoucher) {
+            this.kodeVoucher = kodeVoucher;
+            return this;
+        }
+
+        public Builder setSudahDibayar(boolean sudahDibayar) {
+            this.sudahDibayar = sudahDibayar;
+            return this;
+        }
+
+        public Builder setTanggalCheckin(Date tanggalCheckin) {
+            this.tanggalCheckin = tanggalCheckin;
+            return this;
+        }
+
+        public Builder setTanggalCheckout(Date tanggalCheckout) {
+            this.tanggalCheckout = tanggalCheckout;
+            return this;
+        }
+
+        public Builder setStatusAktif(boolean statusAktif) {
+            this.statusAktif = statusAktif;
+            return this;
+        }
+
+        public HotelRoomBooking build() {
+            return new HotelRoomBooking(this);
+        }
     }
 
     public void cetakDetailPemesanan() {
@@ -62,7 +149,6 @@ public class HotelRoomBooking {
     public void redeemVoucher(String kode) {
     }
 
-    // Lazy Class
     public void kirimEmailKonfirmasi() {
     }
 
